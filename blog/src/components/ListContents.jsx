@@ -5,93 +5,102 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 function ListContents() {
     return(
         <>
-            <div>
-            <Router>
-                <StyledLink to="/">
-                    <ImgBox>
-                        <img src="" alt="" />
-                    </ImgBox>
-                    <TxtBox>
-                        <TagList>
-                            <Tag>
-                                tag1
-                            </Tag>
-                        </TagList>
-                        <Title>여기에 글제목이 들어가야해!</Title>
-                        <Txt>여기는 글내용이 들어가야해!</Txt>
-                        <InfoWriter>
+            <Inner>
+                <Router>
+                    <StyledLink to="/">
+                        <ImgBox>
                             <img src="" alt="" />
-                            <WriterInfo>
-                                <WriterName>글쓴이</WriterName>
-                                <DateInfo></DateInfo>
-                            </WriterInfo>
-                        </InfoWriter>
-                    </TxtBox>
-                </StyledLink>
-                <ul className="post_list">
-                    <li>
-                        <Link to="/">
+                        </ImgBox>
+                        <TxtBox>
                             <TagList>
-                                <span className="tag1">tag1</span>
+                                <Tag>
+                                    tag1
+                                </Tag>
                             </TagList>
-                            <div className="post_content">
-                                <div className="post_txt">
-                                    <h3>여기에 글제목이 들어가야해!</h3>
-                                    <p>여기는 글내용이 들어가야해!</p>
-                                    <div className="info_writer">
-                                        <img src="" alt="" />
-                                        <div>
-                                            <p className="writer">글쓴이</p>
-                                            <span className="date"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post_img">
-                                    <img src="" alt="" />
-                                </div>
-                            </div>
-                        </Link>
-                    </li>
-                </ul>
-            </Router>
-            </div>
+                            <Title>🌍여기에 글제목이 들어가야해!</Title>
+                            <Txt>여기는 글내용이 들어가야해!</Txt>
+                            <InfoWriter>
+                                <WriterImage src="" alt="" />
+                                <WriterInfo>
+                                    <WriterName>글쓴이</WriterName>
+                                    <DateInfo>2024.00.00</DateInfo>
+                                </WriterInfo>
+                            </InfoWriter>
+                        </TxtBox>
+                    </StyledLink>
+                </Router>
+            </Inner>
         </>
     )
 }
 
 const StyledLink = styled(Link)`
+    display:inline-block;
+    border:1px solid #ebebeb;
+    border-radius:20px;
     text-decoration: none;
     color: inherit;
 `;
+const Inner = styled.div`
+    padding-left:40px;
+    padding-right:40px;
+`
 const ImgBox = styled.div`
-    /* 이미지 박스 스타일 */
+    display: flex;
+    position: relative;
+    width: 100%;
+    padding-top: 100px;
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+    background:tan;
 `;
 const TxtBox = styled.div`
-    /* 텍스트 박스 스타일 */
+    padding:16px;
 `;
 const TagList = styled.div`
-    /* 태그 리스트 스타일 */
+    text-align:left;
 `;
 const Tag = styled.span`
-    /* 태그 스타일 */
+    padding:4px 8px;
+    border:0;
+    border-radius:20px;
+    background:aqua;
+    font-size:14px;
+    font-weight:500;
 `;
 const Title = styled.h2`
-    /* 제목 스타일 */
+    font-size:18px;
 `
 const Txt =styled.p`
     /* 내용 스타일 */
 `
 const InfoWriter = styled.div`
-    /* 글쓴이 정보 스타일 */
+    display:flex;
+    align-items:center;
+    padding-top:20px;
+    border-top:1px solid #222;
 `;
+const WriterImage = styled.img`
+    width:40px;
+    height:40px;
+    border-radius:20px;
+    background-color:yellowgreen;
+    object-fit:cover;
+`
 const WriterInfo = styled.div`
-    /* 글쓴이 정보 스타일 */
+    display:flex;
+    align-items:center;
+    margin-left:10px;
 `;
 const WriterName = styled.p`
-    /* 글쓴이 이름 스타일 */
+    font-size:12px;
+    font-weight:700;
 `;
 
 const DateInfo = styled.span`
-    /* 날짜 정보 스타일 */
+    margin-left:4px;
+    font-size:10px;
 `;
 export default ListContents;
