@@ -51,7 +51,7 @@ function Recentcontents() {
                                 </AddOns>
                             </TxtBox>
                             <ImgBox>
-                                <Img src="" alt="" />
+                                <Img src="/img/img1.jpg" alt="" />
                             </ImgBox>
                         </TxtList>
                     </Content>
@@ -98,6 +98,7 @@ const PostDesc = styled.p`
     margin-top:24px;
 `
 const TxtList = styled.div`
+    position:relative;
     width:50%;
 `
 const TxtBox = styled.div`
@@ -105,10 +106,12 @@ const TxtBox = styled.div`
     padding:20px;
     border:1px solid #ebebeb;
     border-radius:20px;
+    text-align:left;
 `
 const TagWrap = styled.div`
 `
 const TagList = styled.ul`
+    display:flex;
     
 `
 const TagItem = styled.li`
@@ -128,9 +131,10 @@ const TxtTitle  = styled.p`
     font-weight:700;
 `
 const UserInfo = styled.div`
-    display:flex;
+    
 `
 const UserImage  = styled.img`
+    
     
 `
 const UserName = styled.span`
@@ -154,9 +158,24 @@ const BtnDown  = styled.button`
 
 `
 const ImgBox = styled.div`
-
+   position:absolute;
+   top:50%;
+   right:24px;
+   width:200px;
+   height:200px;
+   margin-top:-100px;
 `
 const Img = styled.img`
-    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    margin: auto;
+    object-fit: cover;
 `
 export default Recentcontents;
