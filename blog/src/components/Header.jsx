@@ -20,19 +20,15 @@ function Header() {
 
     return(
         <Router>
-            <StyledHeader style={{ backgroundColor: scrollY > 0 ? 'red' : 'transparent' }}>
+            <StyledHeader style={{ backgroundColor: scrollY > 0 ? '#c9c9c9' : 'transparent' }}>
                 <StyleInner>
-                    <StyleLogo>Crazyyy</StyleLogo>
+                    <Logolink to="/"><StyleLogo>Crazyyy</StyleLogo></Logolink>
                     <StyledNav>
                         <StyledUl>    
                             <StyledItem><StyledLink to="/">list1</StyledLink></StyledItem>
                             <StyledItem><StyledLink to="/">list2</StyledLink></StyledItem>
                         </StyledUl>
                     </StyledNav>
-                    <StyledBox>
-                        <SearchInput type="text" />
-                        {/* <button className="btn_del"></button> */}
-                    </StyledBox>
                 </StyleInner>
             </StyledHeader>
         </Router>
@@ -40,18 +36,29 @@ function Header() {
 }
 
 const StyledHeader = styled.header`
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
     width:100%;
-    height:100px;
-    border-bottom:1px solid #222 ;
+    height:80px;
+    z-index:10;
+    transition: background-color 0.3s, opacity 0.3s;
 `;
 const StyleInner = styled.div`
     position:relative;
     margin:0 100px;
 `
-const StyleLogo = styled.h1`
+const Logolink = styled(Link)`
     position:absolute;
-    top:0;
+    top:50%;
     left:0;
+    margin-top:-20px;
+    color:#fff;
+    text-decoration:none;
+`
+const StyleLogo = styled.h1`
+    margin:0;
 `
 const StyledNav = styled.nav`
     display:block;
@@ -61,7 +68,8 @@ const StyledUl = styled.ul`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height:80px;
+    margin:0;
 `
 const StyledItem = styled.li`
     height:100%;
@@ -71,19 +79,12 @@ const StyledLink = styled(Link)`
     align-items: center;
     padding: 0 35px;
     height: 100%;
-    color: #222;
-    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.60);
+    font-size:24px;
+    font-weight:500;
+    color: #fff;
+    -webkit-text-stroke:1px #222;
+    text-decoration:none;
     
-`;
-const StyledBox = styled.div`
-    position:absolute;
-    top:0;
-    right:0;
-`;
-const SearchInput = styled.input`
-    padding: 5px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
 `;
 
 

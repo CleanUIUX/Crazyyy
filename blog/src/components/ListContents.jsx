@@ -1,33 +1,37 @@
 import styled from "styled-components";
-import data from '../data/data.js'
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { contentData } from "../data/list_data.js"
 
 function ListContents() {
     return(
         <>
             <Inner>
                 <Router>
-                    <StyledLink to="/">
-                        <ImgBox>
-                            <img src="" alt="" />
-                        </ImgBox>
-                        <TxtBox>
-                            <TagList>
-                                <Tag>
-                                    tag1
-                                </Tag>
-                            </TagList>
-                            <Title>🌍여기에 글제목이 들어가야해!</Title>
-                            <Txt>여기는 글내용이 들어가야해!</Txt>
-                            <InfoWriter>
-                                <WriterImage src="" alt="" />
-                                <WriterInfo>
-                                    <WriterName>글쓴이</WriterName>
-                                    <DateInfo>2024.00.00</DateInfo>
-                                </WriterInfo>
-                            </InfoWriter>
-                        </TxtBox>
-                    </StyledLink>
+                    {contentData.map((content) => {
+                        return(
+                        <StyledLink to="/" key={content.id}>
+                            <ImgBox>
+                                <img src={content.imgSrc} alt="" />
+                            </ImgBox>
+                            <TxtBox>
+                                <TagList>
+                                    {content.tags.map((tag, list_data) => {
+                                        <Tag key={list_data}>{tag}</Tag>
+                                    })}
+                                </TagList>
+                                <Title>{content.title}</Title>
+                                <Txt>{content.text}</Txt>
+                                <InfoWriter>
+                                    <WriterImage src={content.writer.imageSrc} alt="" />
+                                    <WriterInfo>
+                                        <WriterName>{content.writer.name}</WriterName>
+                                        <DateInfo>{content.writer.date}</DateInfo>
+                                    </WriterInfo>
+                                </InfoWriter>
+                            </TxtBox>
+                        </StyledLink>
+                        )
+                    })}
                 </Router>
             </Inner>
         </>
@@ -36,20 +40,20 @@ function ListContents() {
 
 const StyledLink = styled(Link)`
     display:inline-block;
+    margin:4px;
     border:1px solid #ebebeb;
     border-radius:20px;
     text-decoration: none;
     color: inherit;
 `;
 const Inner = styled.div`
-    padding-left:40px;
-    padding-right:40px;
+    padding:40px;
 `
 const ImgBox = styled.div`
     display: flex;
     position: relative;
     width: 100%;
-    padding-top: 100px;
+    padding-top: 250px;
     -webkit-box-align: center;
     align-items: center;
     overflow: hidden;
@@ -103,4 +107,5 @@ const DateInfo = styled.span`
     margin-left:4px;
     font-size:10px;
 `;
+
 export default ListContents;
