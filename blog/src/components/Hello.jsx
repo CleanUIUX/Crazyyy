@@ -46,7 +46,7 @@ const Title = styled.p`
     font-weight:700;
 `
 const Desc = styled.p`
-    margin:0;
+    margin-top:72px;
     font-size:52px;
     font-weight:500;
     color:#ffc940;

@@ -78,11 +78,12 @@ const Title = styled.h2`
     font-size:18px;
 `
 const Txt =styled.p`
-    /* 내용 스타일 */
+    margin-top:20px;
 `
 const InfoWriter = styled.div`
     display:flex;
     align-items:center;
+    margin-top:20px;
     padding-top:20px;
     border-top:1px solid #222;
 `;

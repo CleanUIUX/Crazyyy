@@ -72,12 +72,14 @@ const Title = styled.h3`
     text-align:left;
 `
 const Description = styled.p`
+    margin-top:18px;
     font-size:24px;
     text-align:left;
 `
 const Content = styled.div`
     display:flex;
     justify-content:center;
+    margin-top:24px;
 `
 const PostBox = styled.div`
     width:50%;
@@ -90,7 +92,7 @@ const PostBox = styled.div`
 const PostTitle = styled.p`
     margin-top:16px;
     font-size:24px;
-    font-weight:500;
+    font-weight:700;
 `
 const PostDesc = styled.p`
     margin-top:24px;
@@ -105,21 +107,25 @@ const TxtBox = styled.div`
     border-radius:20px;
 `
 const TagWrap = styled.div`
-    
 `
 const TagList = styled.ul`
     
 `
 const TagItem = styled.li`
-
+    
 `
 const Tag = styled.span`
-    
+    padding:2px 8px;
+    font-size:14px;
+    font-weight:500px;
+    border:1px solid aliceblue;
+    border-radius:20px;
+    background-color: aliceblue;
 `
 const TxtTitle  = styled.p`
     margin-top:16px;
     font-size:24px;
-    font-weight:500;
+    font-weight:700;
 `
 const UserInfo = styled.div`
     display:flex;
