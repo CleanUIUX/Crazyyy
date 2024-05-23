@@ -5,7 +5,7 @@ import { txtpost } from "../data/txtPost_data";
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 function Recentcontents() {
 
-    const [thumbsUp, setThumbsUp] = useState({ btn1:0, btn2:0, btn3:0 });
+    const [thumbsUp, setThumbsUp] = useState({btn0:0, btn1:0, btn2:0, btn3:0 });
     const handleThumbsUp = (button) => {
         setThumbsUp((prevThumbsUp) => ({
             ...prevThumbsUp,
@@ -43,7 +43,7 @@ function Recentcontents() {
                                         <Comment>
                                             <CommentCount>📝3</CommentCount>
                                         </Comment>
-                                        <BtnDown onClick={() => handleThumbsUp('btn1')}>👍{thumbsUp.btn1}</BtnDown>
+                                        <BtnDown onClick={() => handleThumbsUp('btn0')}>👍{thumbsUp.btn0}</BtnDown>
                                     </AddOns>
                                 </PostTxtBox>
                                 </>
