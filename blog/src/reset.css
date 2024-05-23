@@ -45,6 +45,10 @@ ol, ul {
 p{
 	margin:0;
 }
+a{
+	color:#222;
+	text-decoration:none;
+}
 blockquote, q {
 	quotes: none;
 }
