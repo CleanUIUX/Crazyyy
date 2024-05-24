@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
+import {ReactTyped} from 'react-typed';
 
 function Hello(){
     useEffect(() => {
@@ -13,7 +14,14 @@ function Hello(){
                 </ImgWrapper>
                 <TextWrapper>
                     <Title>Welcome to the crazyyy blog!</Title>
-                    <Desc>Let's get it crazy</Desc>
+                    <Desc>
+                        <ReactTyped
+                            strings={["Let's get it crazy", "Have fun reading!" , "Stay tuned for more!"]}
+                            typeSpeed={40}
+                            backSpeed={50}
+                            loop
+                         />
+                    </Desc>
                 </TextWrapper>
             </Section>
         </>
@@ -46,10 +54,11 @@ const Title = styled.p`
     font-weight:700;
 `
 const Desc = styled.p`
-    margin-top:72px;
-    font-size:52px;
-    font-weight:500;
+    margin-top:42px;
+    font-size:80px;
+    font-weight:700;
     color:#ffc940;
+    -webkit-text-stroke: 1px #222;
 `
 
 export default Hello;

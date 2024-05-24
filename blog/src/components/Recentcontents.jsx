@@ -21,10 +21,10 @@ function Recentcontents() {
                     <Description>최신 포스팅을 구경해보세요!</Description>
                     <Content>
                         <PostBox to="/">
-                            {txtpost.map(() => (
+                            {txtpost.map((post) => (
                                 <>
                                 <PostImgBox>
-                                    <PostImg src="/img/img3.jpg" alt="" />
+                                    <PostImg src={post.imgSrc} alt="" />
                                 </PostImgBox>
                                 <PostTxtBox>
                                     <TagWrap>
@@ -32,16 +32,16 @@ function Recentcontents() {
                                             <TagItem><Tag>태그1</Tag></TagItem>
                                         </TagList>
                                     </TagWrap>
-                                    <PostTitle>여기에는 글제목!</PostTitle>
-                                    <PostDesc>글내용</PostDesc>
+                                    <PostTitle>{post.title}</PostTitle>
+                                    <PostDesc>{post.contents}</PostDesc>
                                     <UserInfo>
-                                        <UserImage  src="/img/img2.jpg" alt="" />
-                                        <UserName>글쓴이</UserName>
-                                        <PostDate>24.05.00</PostDate>
+                                        <UserImage  src={post.userImgSrc} alt="" />
+                                        <UserName>{post.name}</UserName>
+                                        <PostDate>{post.date}</PostDate>
                                     </UserInfo>
                                     <AddOns>
                                         <Comment>
-                                            <CommentCount>📝3</CommentCount>
+                                            <CommentCount>📝{post.comments}</CommentCount>
                                         </Comment>
                                         <BtnDown onClick={() => handleThumbsUp('btn0')}>👍{thumbsUp.btn0}</BtnDown>
                                     </AddOns>
@@ -51,31 +51,31 @@ function Recentcontents() {
                         </PostBox>
                         <Router>
                             <TxtListWrap>
-                                {txtlist.map((post) => (
+                                {txtlist.map((list) => (
                                     <Link to="/">
                                         <TxtList>
                                             <ImgBox>
-                                                <Img src={post.imgSrc} alt="" />
+                                                <Img src={list.imgSrc} alt="" />
                                             </ImgBox>
                                             <TxtBox>
                                                 <TagWrap>
                                                         <TagList>
-                                                            {post.tags.map((tag, tag_data) => (
+                                                            {list.tags.map((tag, tag_data) => (
                                                                 <TagItem key={tag_data}><Tag>{tag}</Tag></TagItem>
                                                             ))}
                                                         </TagList>
                                                 </TagWrap>
-                                                <TxtTitle>{post.title}</TxtTitle>
+                                                <TxtTitle>{list.title}</TxtTitle>
                                                 <UserInfo>
-                                                    <UserImage  src={post.userImgSrc} alt="" />
-                                                    <UserName>{post.name}</UserName>
-                                                    <PostDate>{post.date}</PostDate>
+                                                    <UserImage  src={list.userImgSrc} alt="" />
+                                                    <UserName>{list.name}</UserName>
+                                                    <PostDate>{list.date}</PostDate>
                                                 </UserInfo>
                                                 <AddOns>
                                                     <Comment>
-                                                        <CommentCount>📝{post.comments}</CommentCount>
+                                                        <CommentCount>📝{list.comments}</CommentCount>
                                                     </Comment>
-                                                    <BtnDown onClick={() => handleThumbsUp(post.thumbsUpKey)}>👍{thumbsUp[post.thumbsUpKey]}</BtnDown>
+                                                    <BtnDown onClick={() => handleThumbsUp(list.thumbsUpKey)}>👍{thumbsUp[list.thumbsUpKey]}</BtnDown>
                                                 </AddOns>
                                             </TxtBox>
                                         </TxtList>
@@ -137,6 +137,11 @@ const PostBox = styled.div`
     border:1px solid #ebebeb;
     border-radius:20px;
     text-align:left;
+    &:hover {
+        animation: ${scaleUp} 0.5s ease-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    animation: ${fadeIn} 0.5s ease-out;
 `
 const PostImgBox = styled.div`
     display:flex;
@@ -168,12 +173,22 @@ const PostTxtBox = styled.div`
     padding:32px;
 `
 const PostTitle = styled.p`
+    overflow:hidden;
+    display:-webkit-box;
     margin-top:16px;
     font-size:24px;
     font-weight:700;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 `
 const PostDesc = styled.p`
+    overflow:hidden;
+    display:-webkit-box;
     margin-top:24px;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
 `
 const TxtListWrap = styled.div`
     display:flex;
@@ -201,7 +216,6 @@ const TagWrap = styled.div`
 `
 const TagList = styled.ul`
     display:flex;
-    
 `
 const TagItem = styled.li`
     

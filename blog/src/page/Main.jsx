@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Hello from "../components/Hello";
 import ListContents from "../components/ListContents";
 import Recentcontents from "../components/Recentcontents";
