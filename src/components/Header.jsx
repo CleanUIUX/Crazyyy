@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 import { useState, useEffect } from "react";
+import SubMenu from "./SubMenu";
 
 function Header() {
 
@@ -15,8 +16,12 @@ function Header() {
 
         return () => {
             window.removeEventListener('scroll', handleScroll)
-        }
-    })
+        };
+    });
+
+
+    const subMenuItems1 = ['sub1' , 'sub2' , 'sub3'];
+    const subMenuItems2 = ['sub4' , 'sub5' , 'sub6'];
 
     return(
         <Router>
@@ -25,8 +30,14 @@ function Header() {
                     <Logolink to="/"><StyleLogo>Crazyyy</StyleLogo></Logolink>
                     <StyledNav>
                         <StyledUl>    
-                            <StyledItem><StyledLink to="/">list1</StyledLink></StyledItem>
-                            <StyledItem><StyledLink to="/">list2</StyledLink></StyledItem>
+                            <StyledItem>
+                                <StyledLink to="/">list1</StyledLink>
+                                <SubMenu items={subMenuItems1} />
+                            </StyledItem>
+                            <StyledItem>
+                                <StyledLink to="/">list2</StyledLink>
+                                <SubMenu items={subMenuItems2} />
+                            </StyledItem>
                         </StyledUl>
                     </StyledNav>
                 </StyleInner>
@@ -72,7 +83,12 @@ const StyledUl = styled.ul`
     margin:0;
 `
 const StyledItem = styled.li`
+    position:relative;
     height:100%;
+
+    &:hover > div{
+        display:block;
+    }
 `;
 const StyledLink = styled(Link)`
     display: flex;
@@ -86,7 +102,6 @@ const StyledLink = styled(Link)`
     text-decoration:none;
     
 `;
-
 
 
 export default Header;
