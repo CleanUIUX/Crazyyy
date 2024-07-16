@@ -5,39 +5,41 @@ import { contentData } from "../data/list_data.js"
 function ListContents() {
     return(
         <>
-            <Inner>
-                <Router>
-                    {contentData.map((content) => {
-                        return(
-                        <StyledLink to="/" key={content.id}>
-                            <ImgBox>
-                                <img src={content.imgSrc} alt="" />
-                            </ImgBox>
-                            <TxtBox>
-                                <TagList>
-                                    {content.tags.map((tag, list_data) => {
-                                        <Tag key={list_data}>{tag}</Tag>
-                                    })}
-                                </TagList>
-                                <Title>{content.title}</Title>
-                                <Txt>{content.text}</Txt>
-                                <InfoWriter>
-                                    <WriterImage src={content.writer.imageSrc} alt="" />
-                                    <WriterInfo>
-                                        <WriterName>{content.writer.name}</WriterName>
-                                        <DateInfo>{content.writer.date}</DateInfo>
-                                    </WriterInfo>
-                                </InfoWriter>
-                            </TxtBox>
-                        </StyledLink>
-                        )
-                    })}
-                </Router>
-            </Inner>
+        <Inner>
+            {contentData.map((content) => {
+                return(
+                <StyledLink to="/notice" key={content.id}>
+                    <ImgBox>
+                        <img src={content.imgSrc} alt="" />
+                    </ImgBox>
+                    <TxtBox>
+                        <TagList>
+                            {content.tags.map((tag, list_data) => {
+                                <Tag key={list_data}>{tag}</Tag>
+                            })}
+                        </TagList>
+                        <Title>{content.title}</Title>
+                        <Txt>{content.text}</Txt>
+                        <InfoWriter>
+                            <WriterImage src={content.writer.imageSrc} alt="" />
+                            <WriterInfo>
+                                <WriterName>{content.writer.name}</WriterName>
+                                <DateInfo>{content.writer.date}</DateInfo>
+                            </WriterInfo>
+                        </InfoWriter>
+                    </TxtBox>
+                </StyledLink>
+                
+                )
+            })}
+        </Inner>
         </>
     )
 }
-
+const Inner = styled.section`
+    padding-top:30px;
+    text-align:center;
+`
 const StyledLink = styled(Link)`
     display:inline-block;
     margin:4px;
@@ -46,9 +48,6 @@ const StyledLink = styled(Link)`
     text-decoration: none;
     color: inherit;
 `;
-const Inner = styled.div`
-    padding:40px;
-`
 const ImgBox = styled.div`
     display: flex;
     position: relative;

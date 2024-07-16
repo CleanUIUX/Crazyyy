@@ -1,14 +1,19 @@
-import './reset.css'
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Main from './page/Main';
+import Notice from './page/Notice';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Main />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route path="/notice" component={Notice} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

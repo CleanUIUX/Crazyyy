@@ -48,6 +48,7 @@ const Img = styled.img`
 const TextWrapper = styled.div`
     position:relative;
     padding:200px 0;
+    text-align:center;
 `
 const Title = styled.p`
     font-size:62px;
