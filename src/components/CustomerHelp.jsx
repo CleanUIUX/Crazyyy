@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { helpData } from "../data/help_data.js";
+// import { Link } from "react-router-dom/cjs/react-router-dom";
 
 function CustomerHelp() {
 
@@ -6,22 +8,18 @@ function CustomerHelp() {
         <>
             <Contents>
                 <Imgbox>
-                    <Img src={`${process.env.PUBLIC_URL}/img/qna.png`} alt="" />
+                    <Img src={`${process.env.PUBLIC_URL}/img/qna1.png`} alt="" />
                 </Imgbox>
                 <Title>무엇을 도와드릴까요?</Title>
                 <Inpbox>
                     <input type="search" placeholder="궁금한 점을 검색해보세요." value="" />
                 </Inpbox>
                 <HelpList>
-                    <List>
-                        <a href="#">잘못 송금했어요</a>
-                    </List>
-                    <List>
-                        <a href="#">송금 확인중</a>
-                    </List>
-                    <List>
-                        <a href="#">각종 증명서 발급</a>
-                    </List>
+                    {helpData.map((item, index) => (
+                        <List key={index}>
+                            <a href="#">{item}</a>
+                        </List>
+                    ))}
                 </HelpList>
             </Contents>
         </>
@@ -29,12 +27,14 @@ function CustomerHelp() {
 }
 
 const Contents = styled.div`
-    
+    width:100%;
+    max-width:600px;
+    margin:80px auto 0;
 `
 const Imgbox = styled.div`
+    margin:0 auto;
     width:100px;
     height:100px;
-    text-align:center;
 `
 const Img = styled.img`
     width:100%;

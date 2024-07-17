@@ -1,4 +1,6 @@
+import CustomerBanner from "../components/CustomerBanner";
 import CustomerHelp from "../components/CustomerHelp";
+import Damage from "../components/Damage";
 import Header from "../components/Header";
 import styled from "styled-components";
 
@@ -12,15 +14,15 @@ function Notice() {
             <div className="Section">
                 <Inner className="inner">
                     <CustomerHelp />
+                    <CustomerBanner />
+                    <Damage />
                 </Inner>
             </div>
         </>
     )
 }
 const Inner = styled.div`
-    width:100%;
-    max-width:600px;
-    margin:0 auto;
+    
 `
 
 export default Notice;

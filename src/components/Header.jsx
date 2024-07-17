@@ -64,7 +64,7 @@ const Logolink = styled(Link)`
     position:absolute;
     top:50%;
     left:0;
-    margin-top:-20px;
+    margin-top:-10px;
     color:#fff;
     text-decoration:none;
 `
