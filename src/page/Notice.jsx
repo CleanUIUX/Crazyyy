@@ -1,8 +1,10 @@
+import Coverage from "../components/Coverage";
 import CustomerBanner from "../components/CustomerBanner";
 import CustomerHelp from "../components/CustomerHelp";
 import Damage from "../components/Damage";
 import Header from "../components/Header";
 import styled from "styled-components";
+import DragAndDropList from "../components/DragAndDropList";
 
 function Notice() {
 
@@ -16,6 +18,8 @@ function Notice() {
                     <CustomerHelp />
                     <CustomerBanner />
                     <Damage />
+                    <Coverage />
+                    <DragAndDropList />
                 </Inner>
             </div>
         </>
