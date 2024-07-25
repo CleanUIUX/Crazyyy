@@ -1,23 +1,57 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function Test() {
-    const [leftItems, setLeftItems] = useState(['item1', 'item2', 'item3']);
-    const [rightItems, setRightItems] = useState([]);
-    const [draggItem, setDraggItem] = useState([null]);
-    const [draggOver, setDraggOver] = useState([null]);
+    const dragItem = useRef();
+    const dragOverItem = useRef();
+    const [list , setList] = useState([
+        "item1",
+        "item2",
+        "item3",
+        "item4",
+    ]);
 
-    const handleDragStart = (event, item) => {
-        setDraggItem(item); 
-        event.dataTransfer.setData('text/plain', item);
-        event.dataTransfer.effectAllowed = 'move';
+    // 드래그가 시작될때
+    const dragStart = (e, position) => {
+        dragItem.current = position;
+        console.log(e.target.innerHTML);
     }
-    const handleDragOver = (event, targetBox) => {
-        event.preventDafault();
-        setDraggOver(targetBox)
+    // 드래그 중인 대상이 위로 포개졌을 때
+    const dragEnter = (e, position) => {
+        dragOverItem.current = position;
     }
-    return(
+
+    // 드랍
+    const drop = (e) => {
+        const newList = [...list];
+        const dragItemValue = newList[dragItem.current];
+        newList.splice(dragItem.current, 1);
+        newList.splice(dragOverItem.current, 0 , dragItemValue);
+        dragItem.current = null;
+        dragOverItem.current = null;
+    };
+
+    return (
         <>
-
+            {list &&
+                list.map((item, index) => (
+                    <div 
+                        key={index}
+                        style={{
+                            backgroundColor: "lightblue",
+                            margin: "20px 25%",
+                            textAlign: "center",
+                            fontSize: "40px"
+                        }}
+                        draggable
+                        onDragStart={(e) => dragStart(e, index)}
+                        onDragEnter={(e) => dragEnter(e, index)}
+                        onDragEnd={drop}
+                        onDragOver={(e) => e.preventDefault()}
+                    >
+                        {item}
+                    </div>
+                ))
+            }
         </>
     )
 }
