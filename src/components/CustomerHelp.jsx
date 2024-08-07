@@ -12,7 +12,7 @@ function CustomerHelp() {
                 </Imgbox>
                 <Title>무엇을 도와드릴까요?</Title>
                 <Inpbox>
-                    <input type="search" placeholder="궁금한 점을 검색해보세요." value="" />
+                    <input type="search" placeholder="궁금한 점을 검색해보세요." value="" readOnly/>
                 </Inpbox>
                 <HelpList>
                     {helpData.map((item, index) => (
