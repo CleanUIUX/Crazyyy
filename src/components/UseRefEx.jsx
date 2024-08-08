@@ -13,7 +13,7 @@ function UseRefEx () {
     })
 
     // Drag and Drop
-    const [list, setList] = useState(['list1', 'list2', 'list3']);
+    const [leftlist, setLeftList] = useState(['list1', 'list2', 'list3']);
     const [rightList, setRightList] = useState(['list1', 'list2', 'list3']);
     
     const draggingItem = useRef();
@@ -26,16 +26,23 @@ function UseRefEx () {
         
     }
 
-    const handleDragEnter = (index) => {
-        draggingOverItemIndex.current = index;
+    const handleDragEnter = (e) => {
+        e.preventDefalut();
+        e.dataTransfer.dropEffect = 'move';
     }
 
-    const handleDragEnd = () => {
-        const copyListItems = [...list];
-        const draggingItemContent = copyListItems[draggingItemIndex.current]; // 드래그 중인 아이템의 내용을 저장
+    const handleDrop = (e, toBox) => {
+        e.preventDefalut();
+        const item = draggingItem.current;
+        const fromBox = draggingFromBox.current;
 
-        copyListItems.splice(draggingItemIndex.current, 1);
-        copyListItems.splice(draggingOverItemIndex.current, 0, draggingItemContent);
+        if(fromBox === toBox) return;
+
+        if(fromBox === 'left') {
+            setLeftList(prev => prev.filter(i => i !==item));
+        }
+
+
 
         // 리스트를 새로운 순서로 업데이트
         setList(copyListItems);
