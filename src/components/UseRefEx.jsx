@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 
 function UseRefEx () {
     const inputRef = useRef(null);
@@ -13,48 +14,33 @@ function UseRefEx () {
     })
 
     // Drag and Drop
-    const [leftlist, setLeftList] = useState(['list1', 'list2', 'list3']);
-    const [rightList, setRightList] = useState(['list1', 'list2', 'list3']);
+    const [list, setList] = useState(['item1', 'item2', 'item3']);
+    const dragItem = useRef();
+    const dragOverItem = useRef();
+
+    // DragStart
+    const dragStart = (e, position) => {
+        dragItem.current = position;
+        console.log(e.target.innerHTML);        
+    }
+
+    // DragEnter
+    const dragEnter = (e, position) => {
+        dragOverItem.current = position;
+
+    }
     
-    const draggingItem = useRef();
-    const draggingFromBox = useRef();
-
-    const handleDragStart = (e, item, fromBox) => {
-        draggingItem.current = item;
-        draggingFromBox.current = fromBox;
-        e.dataTransfer.effectAllowed = 'move'
-        
-    }
-
-    const handleDragEnter = (e) => {
-        e.preventDefalut();
-        e.dataTransfer.dropEffect = 'move';
-    }
-
-    const handleDrop = (e, toBox) => {
-        e.preventDefalut();
-        const item = draggingItem.current;
-        const fromBox = draggingFromBox.current;
-
-        if(fromBox === toBox) return;
-
-        if(fromBox === 'left') {
-            setLeftList(prev => prev.filter(i => i !==item));
-        }
-
-
-
-        // 리스트를 새로운 순서로 업데이트
+    const drop = (e) => {
+        const copyListItems = [...list];
+        const dragItemContent = copyListItems[dragItem.current];
+        copyListItems.splice(dragItem.current, 1);
+        copyListItems.splice(dragOverItem.current, 0, dragItemContent); 
+        dragItem.current = null;
+        dragOverItem.current = null;
         setList(copyListItems);
-        
-        draggingItemIndex.current = null;
-        draggingOverItemIndex.current = null;
-
-        // const handleDragOver = (e) => {
-        //     e.preventDefalut();
-        // }
-    }
-
+      };
+     
+    
     return(
         <>
         <input ref={inputRef} type="text"  placeholder="focus me!"/>
@@ -64,24 +50,34 @@ function UseRefEx () {
         <p>Count : {count}</p>
         <button onClick={() => setCount(count + 1)}>여기를 클릭하면 횟수가 올라가</button>
 
-        <ul>
-            {list.map((item, index) => (
-                <li
-                    key={index}
-                    draggable
-                    onDragStart={() => handleDragStart(index)}
-                    onDragEnter={() => handleDragEnter(index)}
-                    onDragEnd={handleDragEnd}
-                    // onDragOver={)}
-                    style={{ padding: '8px', border: '1px solid #222', margin: '4px 0' }}
-                >
-                    {item}
-                </li>
-            ))}
-            
-        </ul>
+
+       
+        {
+            list&&
+            list.map((item, index) => (
+                <StyleLi key ={index}> { item } </StyleLi>
+            ))
+        }
+        
+        
         </>
     )
 }
+
+// style
+const StyleLi = styled.li`
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    list-style: none;
+    color: #333;
+    font-weight: bold;
+
+    &:hover {
+    background-color: #ddd;
+    cursor: pointer;
+  }
+`
 
 export default UseRefEx;

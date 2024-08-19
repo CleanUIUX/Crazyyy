@@ -8,7 +8,7 @@ function Main() {
         <>
             <Hello />
             <ListContents />
-            {/* <Recentcontents /> */}
+            <Recentcontents />
             <UseRefEx />
         </>
     )
